@@ -1,0 +1,36 @@
+Creamos el entorno virtual:
+python -m venv venv
+
+Activamos el venv:
+.\venv\Scripts\activate
+
+Instalamos FastAPI y dependencias básicas:
+• FastAPI y su servidor ASGI (Uvicorn):
+pip install fastapi uvicorn
+
+• SQLAlchemy y aiomysql (para trabajar con PostgreSQL):
+pip install sqlalchemy aiomysql
+
+• Pydantic (incluido con FastAPI, pero lo puedes asegurar):
+pip install pydantic
+
+• Crea un archivo requirements.txt para registrar tus dependencias:
+pip freeze > requirements.txt
+
+
+
+Ejecutar servidor:
+
+uvicorn app.main:app --reload
+
+
+
+Dudas que puedan surgir al ver el backend
+
+¿Por que la mayoría de carpetas tienen un archivo __init__.py?
+R = Porque al hacerlo le indicamos a python que el directorio es un paquete, esto nos´
+permitirá exportarlo como módulo, ya que sino lo hacemos python no sabría que un archivo dentro
+de una carpeta (ejemplo el archivo models dentro de app) es un paquete válido y no podríamos
+hacer esto desde otro archivo en otra carpeta: from app.models.user import User
+
+
