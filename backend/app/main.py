@@ -12,11 +12,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-#Verificar la conexión con la base de datos
-DATABASE_URL = os.getenv("DATABASE_URL")
-if not DATABASE_URL:
-    raise ValueError("La variable de entorno DATABASE_URL no está configurada. Verifica si tienes el .env y si lo tienes, verifica que sea correcto")
-
 #Ruta de verificación
 @app.get("/")
 async def read_root():
