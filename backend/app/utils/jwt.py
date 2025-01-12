@@ -1,8 +1,11 @@
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
+import os
+from dotenv import load_dotenv
 
-#Configuración básica para los tokens JWT
-SECRET_KEY = "UT-RAFA-#2025ADRIELCELESTESERGIO"
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback_secret_key")  # Lee el SECRET_KEY desde .env
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

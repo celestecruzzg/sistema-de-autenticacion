@@ -18,10 +18,15 @@ class UserResponse(UserBase):
     is_verified: bool
     created_at: datetime
     
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+    
     #Permite que FastAPI convierta automáticamente los datos de el modelo SQLAlchemy User a este esquema
     #Su uso/función es para que el backend pueda responder con datos sobre el usuario
     class Config:
-        orm_mode = True
+        from_attributes = True
         
         
 """ 
