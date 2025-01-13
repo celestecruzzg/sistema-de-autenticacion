@@ -1,10 +1,12 @@
+import { RouteObject } from "react-router-dom";
+import Login from "./pages/auth/login/Login";
 
-function App() {
-  return (
-    <>
-      
-    </>
-  )
-}
+const appRoutes: RouteObject[] = [
+  //Ruta principal
+  {
+    path: '/',
+    element: <Login to="/login" replace />
+  }
+]
 
-export default App
+export default appRoutes;
