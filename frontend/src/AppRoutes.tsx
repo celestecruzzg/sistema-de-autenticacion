@@ -1,5 +1,6 @@
 import { Navigate, RouteObject } from "react-router-dom";
 import Login from "./pages/auth/login/Login";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Register from "./pages/auth/register/Register";
 
 const appRoutes: RouteObject[] = [
@@ -15,6 +16,10 @@ const appRoutes: RouteObject[] = [
   {
     path: '/register',
     element: <Register />
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />
   }
 ]
 
