@@ -10,8 +10,7 @@ export default function Login() {
         <div className="w-full max-w-md mx-auto">
           <Form />
             <div className='flex justify-center py-4 mt-4'>
-                <h3 className='font-normal text-[var(--color-white)]'>¿Aún no tienes una cuenta? 
-                    <Link to='/register' ><a href="" className='text-blue-500 underline'>Registrate</a></Link></h3>
+                <h3 className='font-normal text-[var(--color-white)]'>¿Aún no tienes una cuenta? <Link to='/register' ><a href="" className='text-blue-500 underline'>Registrate</a></Link></h3>
             </div>
         </div>
       </main>
