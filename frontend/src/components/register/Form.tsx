@@ -1,10 +1,13 @@
 import { FiEye, FiEyeOff, FiLock, FiMail } from "react-icons/fi";
 import { useState } from "react";
 import { FaRegAddressCard } from "react-icons/fa";
+import axios from "axios";
 
 export default function Form() {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -12,10 +15,40 @@ export default function Form() {
         setIsPasswordVisible(!isPasswordVisible);
     };
 
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
         setIsLoading(true);
+
+        try {
+            // Datos que se enviarán al backend
+            const payload = {
+                name: name,
+                last_name: lastName,
+                email: email,
+                password: password,
+            };
+
+            // Llamada al endpoint del backend
+            const response = await axios.post("http://127.0.0.1:8000/auth/register", payload);
+
+            // Mostrar mensaje de éxito
+            alert("Usuario registrado con éxito!");
+            console.log(response.data);
+
+            // Reiniciar el formulario
+            setName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
+        } catch (error: any) {
+            // Manejar errores
+            console.error(error.response?.data?.detail || "Error desconocido");
+            alert(error.response?.data?.detail || "Error al registrar usuario");
+        } finally {
+            setIsLoading(false);
+        }
     };
+
 
     return (
         <div className="bg-white rounded-3xl border-2 border-gray-100 shadow-xl w-full max-w-xl flex flex-col h-full md:h-auto">
@@ -33,8 +66,10 @@ export default function Form() {
                         <form onSubmit={handleSubmit} className="space-y-4 flex flex-col items-center">
                             <div className="relative w-full max-w-xs">
                                 <input
-                                    type="name"
+                                    type="text"
                                     name="name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                     required
                                     placeholder="Nombre(s)"
                                     className="mt-1 block w-full pl-10 border border-gray-300 placeholder: font-light text-sm rounded-lg shadow-sm p-2"
@@ -43,8 +78,10 @@ export default function Form() {
                             </div>
                             <div className="relative w-full max-w-xs">
                                 <input
-                                    type="last-name"
+                                    type="text"
                                     name="last-name"
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
                                     required
                                     placeholder="Apellidos"
                                     className="mt-1 block w-full pl-10 border border-gray-300 placeholder: font-light text-sm rounded-lg shadow-sm p-2"
@@ -55,9 +92,9 @@ export default function Form() {
                                 <input
                                     type="email"
                                     name="email"
-                                    required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                    required
                                     placeholder="Correo electrónico"
                                     className="mt-1 block w-full pl-10 border border-gray-300 placeholder: font-light text-sm rounded-lg shadow-sm p-2"
                                 />

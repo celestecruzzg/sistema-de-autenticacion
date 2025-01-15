@@ -2,6 +2,10 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 from app.routers import auth
 from app.routers import dashboard
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 
 #Cargar las variables de entorno desde el archivo .env
 load_dotenv()
@@ -24,3 +28,10 @@ async def read_root():
         "message": "Bienvenido al proyecto de sistema de autenticación"
     }
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Cambia "*" por el dominio del frontend si lo necesitas, e.g., ["http://localhost:5173"]
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos los métodos HTTP
+    allow_headers=["*"],  # Permitir todos los encabezados
+)
