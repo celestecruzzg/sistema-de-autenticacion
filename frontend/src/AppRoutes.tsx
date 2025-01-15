@@ -2,6 +2,8 @@ import { Navigate, RouteObject } from "react-router-dom";
 import Login from "./pages/auth/login/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Register from "./pages/auth/register/Register";
+import ProtectedRoute from "./components/login/ProtectedRoute";
+
 
 const appRoutes: RouteObject[] = [
   //Ruta principal
@@ -18,8 +20,12 @@ const appRoutes: RouteObject[] = [
     element: <Register />
   },
   {
-    path: '/dashboard',
-    element: <Dashboard />
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   }
 ]
 

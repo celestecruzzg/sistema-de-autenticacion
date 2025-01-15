@@ -1,19 +1,41 @@
 import { FiEye, FiEyeOff, FiLock, FiMail } from "react-icons/fi";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Form() {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
     };
 
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
         setIsLoading(true);
+
+        try {
+            // Realizar la solicitud al backend
+            const response = await axios.post("http://127.0.0.1:8000/auth/login", {
+                email,
+                password,
+            });
+
+            // Guardar el token en el almacenamiento local
+            localStorage.setItem("accessToken", response.data.access_token);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+
+            // Redirigir al dashboard
+            navigate("/dashboard");
+        } catch (error) {
+            alert("Error al iniciar sesión, inténtalo de nuevo");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (

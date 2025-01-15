@@ -8,7 +8,7 @@ export default function Header() {
             alt="Imagen de usuario"
             className="h-10 w-10 rounded-full"
           />
-          <span className="font-medium">Lolcito Insano</span>
+          <span className="font-medium"></span>
 
         </div>
       </header>

@@ -15,8 +15,12 @@ if not DATABASE_URL:
     raise ValueError("La variable de entorno DATABASE_URL no está configurada. Verifica tu archivo .env.")
 
 # Crear el motor de base de datos asíncrono
-engine = create_async_engine(DATABASE_URL, echo=True)
-
+engine = create_async_engine(
+    DATABASE_URL,
+    echo=True,
+    pool_pre_ping=True,  
+    pool_recycle=3600,   # Tiempo de vida máximo para conexiones en el pool
+)
 # Configurar el manejador de sesiones
 SessionLocal = sessionmaker(
     autocommit=False,
