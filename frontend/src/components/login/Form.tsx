@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { FiEye, FiEyeOff, FiLock, FiMail } from "react-icons/fi";
 import { useState } from "react";
 
@@ -35,6 +34,7 @@ export default function Form() {
                                 <input
                                     type="email"
                                     name="email"
+                                    required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Correo electrónico"
@@ -46,6 +46,7 @@ export default function Form() {
                                 <input
                                     type={isPasswordVisible ? 'text' : 'password'}
                                     value={password}
+                                    required
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="Contraseña"
                                     className="mt-1 block w-full pl-10 border border-gray-300 placeholder: font-light text-sm rounded-lg shadow-sm p-2"
@@ -63,7 +64,6 @@ export default function Form() {
                                 <a href="/forget_pass" className="text-blue-800 text-sm mb-5 underline">¿Olvidaste tu contraseña?</a>
                             </div>
                             <div className="flex flex-col justify-end items-center mt-4">
-                                <Link to="/dashboard">
                                 <button
                                     type="submit"
                                     disabled={isLoading}
@@ -93,7 +93,6 @@ export default function Form() {
                                         "Iniciar sesión"
                                     )}
                                 </button>
-                                </Link>
                             </div>
                         </form>
                     </div>
