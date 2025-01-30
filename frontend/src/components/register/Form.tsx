@@ -2,6 +2,7 @@ import { FiEye, FiEyeOff, FiLock, FiMail } from "react-icons/fi";
 import { useState } from "react";
 import { FaRegAddressCard } from "react-icons/fa";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function Form() {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -20,35 +21,29 @@ export default function Form() {
         setIsLoading(true);
 
         try {
-            // Datos que se enviarán al backend
             const payload = {
-                name: name,
+                name,
                 last_name: lastName,
-                email: email,
-                password: password,
+                email,
+                password,
             };
 
-            // Llamada al endpoint del backend
             const response = await axios.post("http://127.0.0.1:8000/auth/register", payload);
 
-            // Mostrar mensaje de éxito
-            alert("Usuario registrado con éxito!");
+            toast.success("Usuario registrado con éxito!");
             console.log(response.data);
 
-            // Reiniciar el formulario
             setName("");
             setLastName("");
             setEmail("");
             setPassword("");
         } catch (error: any) {
-            // Manejar errores
             console.error(error.response?.data?.detail || "Error desconocido");
-            alert(error.response?.data?.detail || "Error al registrar usuario");
+            toast.error(error.response?.data?.detail || "Error al registrar usuario");
         } finally {
             setIsLoading(false);
         }
     };
-
 
     return (
         <div className="bg-white rounded-3xl border-2 border-gray-100 shadow-xl w-full max-w-xl flex flex-col h-full md:h-auto">
@@ -72,7 +67,7 @@ export default function Form() {
                                     onChange={(e) => setName(e.target.value)}
                                     required
                                     placeholder="Nombre(s)"
-                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder: font-light text-sm rounded-lg shadow-sm p-2"
+                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder:font-light text-sm rounded-lg shadow-sm p-2"
                                 />
                                 <FaRegAddressCard className="absolute left-3 top-3 text-[var(--primary-color)] h-5 w-5" />
                             </div>
@@ -84,7 +79,7 @@ export default function Form() {
                                     onChange={(e) => setLastName(e.target.value)}
                                     required
                                     placeholder="Apellidos"
-                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder: font-light text-sm rounded-lg shadow-sm p-2"
+                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder:font-light text-sm rounded-lg shadow-sm p-2"
                                 />
                                 <FaRegAddressCard className="absolute left-3 top-3 text-[var(--primary-color)] h-5 w-5" />
                             </div>
@@ -96,27 +91,27 @@ export default function Form() {
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
                                     placeholder="Correo electrónico"
-                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder: font-light text-sm rounded-lg shadow-sm p-2"
+                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder:font-light text-sm rounded-lg shadow-sm p-2"
                                 />
                                 <FiMail className="absolute left-3 top-3 text-[var(--primary-color)] h-5 w-5" />
                             </div>
                             <div className="relative w-full max-w-xs">
                                 <input
-                                    type={isPasswordVisible ? 'text' : 'password'}
+                                    type={isPasswordVisible ? "text" : "password"}
                                     value={password}
                                     required
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="Contraseña"
-                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder: font-light text-sm rounded-lg shadow-sm p-2"
+                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder:font-light text-sm rounded-lg shadow-sm p-2"
                                 />
                                 <FiLock className="absolute left-3 top-3 text-[var(--primary-color)] h-5 w-5" />
-                                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer">
-                                        {isPasswordVisible ? (
-                                            <FiEyeOff onClick={togglePasswordVisibility} className="text-gray-400 h-5 w-5" />
-                                        ) : (
-                                            <FiEye onClick={togglePasswordVisibility} className="text-gray-400 h-5 w-5" />
-                                        )}
-                                    </div>
+                                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer">
+                                    {isPasswordVisible ? (
+                                        <FiEyeOff onClick={togglePasswordVisibility} className="text-gray-400 h-5 w-5" />
+                                    ) : (
+                                        <FiEye onClick={togglePasswordVisibility} className="text-gray-400 h-5 w-5" />
+                                    )}
+                                </div>
                             </div>
                             <div className="flex flex-col justify-end items-center mt-4">
                                 <button
