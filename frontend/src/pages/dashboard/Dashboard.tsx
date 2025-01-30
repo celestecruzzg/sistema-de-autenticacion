@@ -1,10 +1,8 @@
-// src/components/dashboard/Dashboard.tsx
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../components/dashboard/Sidebar";
 import Header from "../../components/dashboard/Header";
-import Card from "../../components/dashboard/Card";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<any>(null);
@@ -14,10 +12,9 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const token = localStorage.getItem("accessToken"); // Obtiene el token del localStorage
+        const token = localStorage.getItem("accessToken");
 
         if (!token) {
-          // Si no hay token, redirigir al login
           navigate("/login");
           return;
         }
@@ -28,7 +25,7 @@ export default function Dashboard() {
           },
         });
 
-        setUserData(response.data); // Guardar los datos del usuario en el estado
+        setUserData(response.data);
       } catch (error: any) {
         if (error.response && error.response.status === 401) {
           setError("No tienes permiso para acceder al dashboard. Inicia sesión nuevamente.");
@@ -54,23 +51,7 @@ export default function Dashboard() {
         <Header />
         <main className="flex-1 p-10">
           <div className="h-full rounded bg-white p-6">
-            {userData ? (
-              <>
-                <h1 className="text-xl font-semibold mb-4">
-                  ¡Bienvenido, {userData.user.name} {userData.user.last_name}!
-                </h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-                  <Card title="Tarjeta 1" description="Tarjeta 1." />
-                  <Card title="Tarjeta 2" description="Tarjeta 2." />
-                  <Card title="Tarjeta 3" description="Tarjeta 3." />
-                  <Card title="Tarjeta 4" description="Tarjeta 4." />
-                  <Card title="Tarjeta 5" description="Tarjeta 5." />
-                  <Card title="Tarjeta 6" description="Tarjeta 6." />
-                </div>
-              </>
-            ) : (
-              <p>Cargando datos del usuario...</p>
-            )}
+            <Outlet />
           </div>
         </main>
       </div>
