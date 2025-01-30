@@ -49,28 +49,25 @@ function Configuracion() {
   return (
     <div className="bg-gray-200 rounded-xl p-5">
       <div className="bg-gray-200 rounded-xl p-4 w-full">
-        {/* Cuadro de nombre */}
+
         <div className="flex items-center py-4 border-b border-gray-400 last:border-b-0">
           <span className="text-gray-800 text-2xl font-light text-left w-1/3">Nombre</span>
           <span className="text-gray-800 text-center w-1/3">{userData.name || "Usuario"}</span>
           <button className="bg-gray-600 text-white py-2 px-4 rounded-full hover:bg-gray-700 ml-auto">Editar</button>
         </div>
 
-        {/* Cuadro de correo */}
         <div className="flex items-center py-4 border-b border-gray-400 last:border-b-0">
           <span className="text-gray-800 text-2xl font-light text-left w-1/3">Correo electrónico</span>
           <span className="text-gray-800 text-center w-1/3">{userData.email || "correo@ejemplo.com"}</span>
           <button className="bg-gray-600 text-white py-2 px-4 rounded-full hover:bg-gray-700 ml-auto">Editar</button>
         </div>
 
-        {/* Cuadro de contraseña */}
         <div className="flex items-center py-4 border-b border-gray-400 last:border-b-0">
           <span className="text-gray-800 text-2xl font-light text-left w-1/3">Contraseña</span>
           <span className="text-gray-800 text-center w-1/3">*********</span>
           <button className="bg-gray-600 text-white py-2 px-4 rounded-full hover:bg-gray-700 ml-auto">Editar</button>
         </div>
 
-        {/* Cuadro de foto de perfil */}
         <div className="flex flex-col items-start py-4 border-b border-gray-400 last:border-b-0 relative">
           <span className="text-gray-800 text-2xl font-light text-left w-full mb-2">Foto de perfil</span>
           <div className="flex items-start gap-2 mt-4 w-full">

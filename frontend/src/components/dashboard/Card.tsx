@@ -10,7 +10,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, value, subtitles, logoUrl }) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
-      {/* Parte izquierda (Título y contenido) */}
+
       <div className="flex flex-col">
         <h2 className="text-xl font-semibold mb-2 flex items-center">
           {title}
@@ -25,12 +25,11 @@ const Card: React.FC<CardProps> = ({ title, value, subtitles, logoUrl }) => {
         )}
       </div>
 
-      {/* Parte central (Gráfico simulado como círculo) */}
+
       <div className="flex justify-center items-center w-20 h-20 bg-gray-200 rounded-full">
         <span className="text-gray-600">Gráfico</span>
       </div>
 
-      {/* Parte derecha (Logo en cuadro gris) */}
       <div className="w-12 h-12 bg-gray-300 rounded-lg">
         {logoUrl && (
           <img src={logoUrl} alt="Logo" className="w-full h-full object-contain p-2" />

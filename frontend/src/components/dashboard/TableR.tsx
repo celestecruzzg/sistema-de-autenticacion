@@ -1,8 +1,7 @@
-// src/components/dashboard/Table.tsx
 import React, { useState } from 'react';
 import { FaCalendarAlt } from 'react-icons/fa'; 
 
-export default function Table({ data }: { data: any[] }) {
+export default function TableR({ data }: { data: any[] }) {
   const [selectedMonth, setSelectedMonth] = useState<string>('Enero');
 
   const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -38,28 +37,24 @@ export default function Table({ data }: { data: any[] }) {
               <option value="Diciembre">Diciembre</option>
             </select>
 
-            
             <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-700" />
           </div>
         </div>
       </div>
 
-
       <table className="min-w-full table-auto mt-4">
         <thead>
           <tr className="bg-[var(--color-gray)] text-gray-300">
-            <th className="px-4 py-2 text-left">Equipo</th>
-            <th className="px-4 py-2 text-left">Proyecto</th>
-            <th className="px-4 py-2 text-left">Duración</th>
+            <th className="px-4 py-2 text-left">Recurso</th>
+            <th className="px-4 py-2 text-left">Cantidad</th>
             <th className="px-4 py-2 text-left">Estado</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item) => (
             <tr key={item.id} className="border-t">
-              <td className="px-4 py-2">{item.equipo}</td>
-              <td className="px-4 py-2">{item.proyecto}</td>
-              <td className="px-4 py-2">{item.duracion}</td>
+              <td className="px-4 py-2">{item.recurso}</td>
+              <td className="px-4 py-2">{item.cantidad}</td>
               <td className="px-4 py-2 text-green-600">{item.estado}</td>
             </tr>
           ))}

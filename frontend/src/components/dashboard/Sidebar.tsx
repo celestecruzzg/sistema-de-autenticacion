@@ -12,7 +12,7 @@ export default function Sidebar() {
   return (
     <aside className="w-64 bg-[var(--color-gray)] text-white flex flex-col justify-between h-full">
       <div className="p-10">
-        <h2 className="text-2xl font-semibold">Sidebar</h2>
+        <h2 className="text-2xl font-semibold">Gestor de proyectos</h2>
 
         <button 
           onClick={() => navigate("/dashboard")}

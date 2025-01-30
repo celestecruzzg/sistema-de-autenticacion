@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Table from "../../components/dashboard/Table";
 import { Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -10,6 +9,7 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
+import TableR from "./TableR";
 
 // Registrar los componentes de Chart.js
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
@@ -27,13 +27,13 @@ export default function Recursos() {
     { id: 3, equipo: "Equipo C", recurso: "Recurso 3", cantidad: "7" },
   ]);
 
-  // Datos de ejemplo para los gráficos de pastel simplificados
+
   const dataPie1 = {
     labels: ["Disponible", "En uso", "Reservado"],
     datasets: [
       {
         data: [50, 30, 20],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        backgroundColor: ["#2D8647", "#BDBDBD", "#FFCE56"],
       },
     ],
   };
@@ -43,58 +43,84 @@ export default function Recursos() {
     datasets: [
       {
         data: [30, 40, 30],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        backgroundColor: ["#BDBDBD", "#2D8647", "#FFCE56"],
       },
     ],
   };
 
   return (
     <>
-      <h1 className="text-xl font-semibold mb-4">¡Vista de Recursos!</h1>
+      <h1 className="text-xl font-semibold mb-4">Recursos</h1>
       <div className="p-6">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-medium">Tabla de Recursos</h3>
-            <Table data={tableData1} />
+            <h3 className="text-xl font-semibold">Tabla de Recursos</h3>
+            <TableR data={tableData1} />
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xs font-semibold ">Asignación de Recursos</h3>
-            <Table data={tableData2} />
+            <h3 className="text-xl font-semibold ">Asignación de Recursos</h3>
+            <TableR data={tableData2} />
           </div>
         </div>
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl shadow-lg p-6 flex justify-center items-center">
-            <h3 className="text-xl font-medium mb-2">Disponibilidad de Recursos</h3>
-            <Pie
-              data={dataPie1}
-              options={{
-                responsive: true,
-                plugins: { legend: { display: false } },
-                aspectRatio: 1, // Hace el gráfico más pequeño y ajustado
-                maintainAspectRatio: false,
-              }}
-              width={100}
-              height={100}
-            />
+
+        <div className="grid grid-cols-2 gap-6">
+          {/* Gráfica 1 */}
+          <div className="bg-white rounded-xl shadow-lg p-4 flex items-center h-48 overflow-hidden">
+            <div className="w-full">
+              <h3 className="text-xs font-bold text-left mb-2">Disponibilidad de Recursos</h3>
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                <h3 className="text-xs font-medium text-left">Recurso Humano</h3>
+              </div>
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                <h3 className="text-xs font-medium text-left">Recurso Material</h3>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-center">
+              <Pie
+                data={dataPie1}
+                options={{
+                  responsive: true,
+                  plugins: { legend: { display: false } },
+                  maintainAspectRatio: false,
+                }}
+                width={80}
+                height={80}
+              />
+            </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 flex justify-center items-center">
-            <h3 className="text-xl font-medium mb-4">Asignación de Recursos</h3>
-            <Pie
-              data={dataPie2}
-              options={{
-                responsive: true,
-                plugins: { legend: { display: false } },
-                aspectRatio: 1, // Hace el gráfico más pequeño y ajustado
-                maintainAspectRatio: false,
-              }}
-              width={100} // Puedes ajustar más si es necesario
-              height={100} // Puedes ajustar más si es necesario
-            />
+          {/* Gráfica 2 */}
+          <div className="bg-white rounded-xl shadow-lg p-4 flex items-center h-48 overflow-hidden">
+            <div className="w-full">
+              <h3 className="text-xs font-bold text-left mb-2">Asignación de Recursos</h3>
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                <h3 className="text-xs font-medium text-left">Recurso Humano</h3>
+              </div>
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                <h3 className="text-xs font-medium text-left">Recurso Material</h3>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-center">
+              <Pie
+                data={dataPie2}
+                options={{
+                  responsive: true,
+                  plugins: { legend: { display: false } },
+                  maintainAspectRatio: false,
+                }}
+                width={80}
+                height={80}
+              />
+            </div>
           </div>
         </div>
       </div>
     </>
   );
 }
+
