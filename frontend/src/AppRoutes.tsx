@@ -6,6 +6,9 @@ import ProtectedRoute from "./components/login/ProtectedRoute";
 import Home from "./components/dashboard/Home";
 import Configuracion from "./components/dashboard/Configuracion";
 import Resources from "./components/dashboard/Resources";
+import Proyectos from './pages/proyectos/Proyectos';
+import Equipos from "./pages/equipos/Equipos";
+import ProyectoDetalle from "./pages/proyectos/ProyectoDetalle"; // Importamos la nueva vista
 
 const appRoutes: RouteObject[] = [
   {
@@ -33,14 +36,25 @@ const appRoutes: RouteObject[] = [
         element: <Home />,
       },
       {
+        path: "proyectos",
+        element: <Proyectos />,
+      },
+      {
+        path: "proyectos/:id", // Agregamos la ruta para ver los detalles del proyecto
+        element: <ProyectoDetalle />,
+      },
+      {
+        path: "equipos",
+        element: <Equipos />,
+      },
+      {
+        path: "recursos",
+        element: <Resources />,
+      },
+      {
         path: "configuracion",
         element: <Configuracion />,
       },
-      {
-      path: "recursos",
-      element: < Resources/>,
-    },
-
     ],
   },
 ];
