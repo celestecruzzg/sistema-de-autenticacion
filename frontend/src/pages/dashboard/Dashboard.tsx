@@ -5,6 +5,7 @@ import Sidebar from "../../components/dashboard/Sidebar";
 import Header from "../../components/dashboard/Header";
 
 export default function Dashboard() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [userData, setUserData] = useState<any>(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -12,14 +13,14 @@ export default function Dashboard() {
   useEffect(() => {
     const storedUserData = localStorage.getItem("user");
     if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));  // Obtener datos del usuario
+      setUserData(JSON.parse(storedUserData));
     } else {
       navigate("/login");
     }
   }, [navigate]);
 
   if (!userData) {
-    return <div>Cargando...</div>;  // Mostrar mensaje de carga mientras se obtienen los datos
+    return <div>Cargando...</div>;
   }
 
   return (

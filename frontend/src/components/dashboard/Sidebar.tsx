@@ -1,4 +1,5 @@
 import { FaProjectDiagram, FaUsers, FaCogs } from "react-icons/fa"; 
+import { GrResources } from "react-icons/gr";
 import { IoHome } from "react-icons/io5"; 
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +46,7 @@ export default function Sidebar() {
           onClick={() => navigate("/dashboard/recursos")}
           className="flex items-center space-x-4 rounded hover:bg-gray-600 p-2 w-full mt-4"
         >
-          <FaUsers size={20} />
+          <GrResources size={20} />
           <span>Recursos</span>
         </button>
 
