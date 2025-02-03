@@ -11,6 +11,7 @@ class UserBase(BaseModel):
     name: str = Field(..., max_length=50)
     last_name: str = Field(..., max_length=50)
     email: EmailStr
+    role: str = Field(default="employee", pattern="^(admin|employee)$")
     
     #Aquí se sanitizan las cadenas, en este caso los campos name y last_name se les quitan los posibles espacios en blanco
     #innecesarios y se elimina caracteres peligrosos como <, >, &. Esto se hace para evitar ataques XSS
