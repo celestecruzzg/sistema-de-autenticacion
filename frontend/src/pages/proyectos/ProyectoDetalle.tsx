@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { FaPlus, FaEdit } from "react-icons/fa";
+import { FaEdit, FaPlus } from "react-icons/fa";
 
 const ProyectoDetalle = () => {
-    const { id } = useParams(); // Obtener el ID del proyecto desde la URL
+  const { id } = useParams(); // Obtener el ID del proyecto desde la URL
   
     // Datos de ejemplo (reemplázalos con datos reales de una API o contexto)
     const proyecto = {
@@ -13,108 +13,115 @@ const ProyectoDetalle = () => {
       equipos: ["Equipo Junior", "Equipo Máster"],
       miembros: [
         { nombre: "Celeste González", especialidad: "Desarrollador Frontend", tareas: 1 },
-        { nombre: "Adriel Rodríguez", especialidad: "Desarrollador Backend", tareas: 3 },
-        { nombre: "Sergio Toppec", especialidad: "Diseñador de UI/UX", tareas: 3 },
-        { nombre: "Nahui Pérez", especialidad: "Diseñador de UI/UX", tareas: 3 },
-        { nombre: "Héctor Barreda", especialidad: "Desarrollador Frontend", tareas: 1 },
-        { nombre: "Misael Aguilar", especialidad: "Arquitecto de DB", tareas: 3 },
-        { nombre: "Arturo Ojeda", especialidad: "Desarrollador Backend", tareas: 1 },
-        { nombre: "Kevin Velazquez", especialidad: "Diseñador de UI/UX", tareas: 2 },
+        { nombre: "Adriel Rodríguez", especialidad: "Desarrollador Backend", tareas: 1 },
+        { nombre: "Sergio Toppec", especialidad: "Diseñador de UI/UX", tareas: 1 },
+        { nombre: "Nahui Pérez", especialidad: "Diseñador de UI/UX", tareas: 1 },
       ],
       tareas: [
-        { tarea: "Modelar BD", asignado: "Misael Aguilar", estado: "Pendiente" },
         { tarea: "Diseñar wireframes web", asignado: "Sergio Toppec", estado: "En revisión" },
         { tarea: "Diseñar wireframes móvil", asignado: "Nahui Pérez", estado: "Pendiente" },
         { tarea: "Maquetado del frontend", asignado: "Celeste González", estado: "Pendiente" },
-        { tarea: "Maquetado del frontend", asignado: "Héctor Barreda", estado: "Pendiente" },
         { tarea: "Definir arquitectura backend", asignado: "Adriel Rodríguez", estado: "En revisión" },
       ],
     };
   
     return (
-      <div className="flex max-h-screen">
-        <div className="flex-1 p-6 overflow-auto">
-          {/* Header del Proyecto */}
-          <div className="bg-gray-100 p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold">{proyecto.nombre}</h2>
-            <p className="text-gray-600">{proyecto.descripcion}</p>
-            <p className={`font-semibold mt-2 ${proyecto.estado === "Activo" ? "text-green-600" : "text-red-600"}`}>
-              Estado: {proyecto.estado}
-            </p>
+      <div className="p-4 max-h-screen">
+        {/* Encabezado */}
+        <div className="flex-wrap justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold text-gray-700">Sistema de Gestión</h2>
+          <div className="flex gap-16">
+            <p className="text-gray-500">Descripcion breve del proyecto creado</p>
+            <p className="text-gray-500">Estado: <strong className="text-green-600">Activo</strong></p>
           </div>
-  
-          {/* Equipos en el proyecto */}
-          <div className="mt-6 bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-semibold">Equipos en el proyecto</h3>
-            <p className="text-gray-600">Muestra una lista de los equipos en el proyecto creado</p>
-            <div className="flex gap-3 mt-4">
-              {proyecto.equipos.map((equipo, index) => (
-                <button key={index} className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">
-                  {equipo}
-                </button>
-              ))}
+        </div>
+        {/* Contenido después del encabezado */}
+        <div className="max-w-full bg-slate-300 py-0.5 mb-6"></div>
+        <div className="flex gap-28">
+          {/* Columna izquierda */}
+          <div>
+            {/* Card 1 - Columna izquierda */}
+            <div className="flex-wrap justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold text-gray-700">Equipos en el proyecto</h2>
+              <div className="flex-wrap">
+                <p className="text-gray-500 mb-4 text-sm">Muestra una lista de los equipos del proyecto creado</p>
+                <div className="flex gap-6">
+                  <button className="flex items-center bg-gray-600 text-sm text-white px-4 py-2 rounded-lg">
+                    Equipo Junior
+                  </button>
+                  <button className="flex items-center bg-gray-400 text-sm text-white px-4 py-2 rounded-lg">
+                    Equipo Senior
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-  
-          {/* Tabla de miembros */}
-          <div className="mt-6 bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-semibold">Miembros del equipo</h3>
-            <p className="text-gray-600">Muestra una lista de los miembros del equipo seleccionado</p>
-            <table className="w-full mt-4 border-collapse">
-              <thead>
-                <tr className="bg-gray-200 text-gray-700">
-                  <th className="p-2 text-left">Nombre completo</th>
-                  <th className="p-2 text-left">Especialidad</th>
-                  <th className="p-2 text-left">Total de tareas</th>
-                </tr>
-              </thead>
-              <tbody>
-                {proyecto.miembros.map((miembro, index) => (
-                  <tr key={index} className="border-t">
-                    <td className="p-2">{miembro.nombre}</td>
-                    <td className="p-2">{miembro.especialidad}</td>
-                    <td className="p-2">{miembro.tareas}</td>
+            {/* Card 2 - Columna izquierda */}
+            <div className="mt-6">
+              <h2 className="text-xl font-semibold text-gray-700">Miembros del equipo</h2>
+                <div className="flex-wrap">
+                  <p className="text-gray-500 mb-4 text-sm">Muestra una lista de los miembros del equipo seleccionado</p>
+                </div>
+              </div>
+              <div>
+                <table>
+                  <thead>
+                  <tr className="bg-gray-200 text-gray-700">
+                    <th className="py-2 px-6 text-left text-sm">Nombre completo</th>
+                    <th className="py-2 px-6 text-left text-sm">Especialidad</th>
+                    <th className="py-2 px-6 text-left text-sm">Total de tareas</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {proyecto.miembros.map((miembro, index) => (
+                    <tr key={index} className="border-t">
+                      <td className="py-2 px-6 text-sm">{miembro.nombre}</td>
+                      <td className="py-2 px-6 text-sm">{miembro.especialidad}</td>
+                      <td className="py-2 px-6 text-sm text-center">{miembro.tareas}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                </table>
+              </div>
           </div>
-  
-          {/* Tabla de tareas asignadas */}
-          <div className="mt-6 bg-white p-6 rounded-lg shadow">
-            <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold">Tareas asignadas</h3>
-              <button className="flex items-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-                <FaPlus className="mr-2" /> Asignar tarea
-              </button>
+          {/* Columna derecha */}
+          <div className="">
+            <div className="flex-wrap justify-between">
+              <h2 className="text-xl font-semibold text-gray-700">Tareas asignadas</h2>
+              <p className="text-gray-500 mb-4 text-sm">Muestra una lista de los miembros del equipo seleccionado</p>
             </div>
-            <p className="text-gray-600">Lista de las tareas asignadas del equipo seleccionado</p>
-            <table className="w-full mt-4 border-collapse">
-              <thead>
-                <tr className="bg-gray-200 text-gray-700">
-                  <th className="p-2 text-left">Tarea asignada</th>
-                  <th className="p-2 text-left">Miembro asignado</th>
-                  <th className="p-2 text-left">Estatus</th>
-                  <th className="p-2"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {proyecto.tareas.map((tarea, index) => (
-                  <tr key={index} className="border-t">
-                    <td className="p-2">{tarea.tarea}</td>
-                    <td className="p-2">{tarea.asignado}</td>
-                    <td className={`p-2 font-semibold ${tarea.estado === "Pendiente" ? "text-red-600" : "text-yellow-600"}`}>
-                      {tarea.estado}
-                    </td>
-                    <td className="p-2">
-                      <button className="text-gray-600 hover:text-gray-800">
-                        <FaEdit />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                <div className="flex-wrap mb-6">
+                  <button className="flex items-center bg-green-600 text-white text-sm px-3 py-2 rounded-lg hover:bg-green-700">
+                    <FaPlus className="mr-2 text-sm" /> Asignar tarea
+                  </button>
+                </div>
+                <div>
+                  <table>
+                    <thead>
+                      <tr className="bg-gray-200 text-gray-700">
+                        <th className="p-2 px-6 text-sm text-left">Tarea asignada</th>
+                        <th className="p-2 px-6 text-sm text-left">Miembro asignado</th>
+                        <th className="p-2 px-6 text-sm text-left">Estatus</th>
+                        <th className="p-2 px-6 text-sm"></th>
+                      </tr>
+                </thead>
+                <tbody>
+                  {proyecto.tareas.map((tarea, index) => (
+                    <tr key={index} className="border-t">
+                      <td className="p-2 px-6 text-sm">{tarea.tarea}</td>
+                      <td className="p-2 px-6 text-sm">{tarea.asignado}</td>
+                      <td className={`p-2 px-6 text-sm font-semibold ${tarea.estado === "Pendiente" ? "text-red-600" : "text-yellow-600"}`}>
+                        {tarea.estado}
+                      </td>
+                      <td className="p-2">
+                        <button className="text-gray-600 hover:text-gray-800">
+                          <FaEdit />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                  </table>
+                </div>
           </div>
         </div>
       </div>
@@ -122,4 +129,3 @@ const ProyectoDetalle = () => {
   };
   
   export default ProyectoDetalle;
-  

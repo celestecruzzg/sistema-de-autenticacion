@@ -37,23 +37,43 @@ const appRoutes: RouteObject[] = [
       },
       {
         path: "proyectos",
-        element: <Proyectos />,
+        element: (
+          <ProtectedRoute>
+          <Proyectos />
+        </ProtectedRoute>
+      ),
       },
       {
         path: "proyectos/:id", // Agregamos la ruta para ver los detalles del proyecto
-        element: <ProyectoDetalle />,
+        element: (
+          <ProtectedRoute>
+          <ProyectoDetalle />
+        </ProtectedRoute>
+      ),
       },
       {
         path: "equipos",
-        element: <Equipos />,
+        element: (
+          <ProtectedRoute>
+          <Equipos />
+        </ProtectedRoute>
+      ),
       },
       {
         path: "recursos",
-        element: <Resources />,
+        element: (
+          <ProtectedRoute>
+          <Resources />
+        </ProtectedRoute>
+      ),
       },
       {
         path: "configuracion",
-        element: <Configuracion />,
+        element: (
+          <ProtectedRoute>
+          <Configuracion />
+        </ProtectedRoute>
+      ),
       },
     ],
   },

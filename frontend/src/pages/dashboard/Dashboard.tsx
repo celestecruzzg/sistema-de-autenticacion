@@ -28,7 +28,7 @@ export default function Dashboard() {
       <div className="flex-1 flex flex-col">
         <Header userData={userData} />
         <main className="flex-1 p-10">
-          <div className="h-full rounded bg-white p-6">
+          <div className="max-h-screen rounded bg-white p-6">
             <Outlet />
           </div>
         </main>
