@@ -1,16 +1,27 @@
 #Esquema que valida los datos que el frontend envía por medio de un json cuando se registra un usuario
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field, field_validator
+
 from typing import Optional
 from datetime import datetime
+import html
 
+#Eschema base ahora con sanitización para los datos compartidos entre los dif esquemas
 class UserBase(BaseModel):
-    name: str
-    last_name: str
+    name: str = Field(..., max_length=50)
+    last_name: str = Field(..., max_length=50)
     email: EmailStr
+    role: str = Field(default="employee", pattern="^(admin|employee)$")
+    
+    #Aquí se sanitizan las cadenas, en este caso los campos name y last_name se les quitan los posibles espacios en blanco
+    #innecesarios y se elimina caracteres peligrosos como <, >, &. Esto se hace para evitar ataques XSS
+    @field_validator("name", "last_name")
+    def sanitize_strings(cls, value: str) -> str:
+        return value.strip()
+
     
 class UserCreate(UserBase):
-    password: str
+    password: str = Field(..., min_length=1)
 
 #A partit de aquí se definen como deben verse los datos que devuelva el backend al solicitar info de un usuario
 class UserResponse(UserBase):
