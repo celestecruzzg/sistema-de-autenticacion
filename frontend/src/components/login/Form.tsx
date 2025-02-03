@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-// Definir el tipo de datos del formulario
 type FormValues = {
     email: string;
     password: string;

@@ -6,6 +6,9 @@ export default function Sidebar() {
   const navigate = useNavigate();
   
   const handleLogout = () => {
+    // Eliminar el token de localStorage para cerrar sesión
+    localStorage.removeItem("accessToken");
+    // Redirigir al usuario a la página de login
     navigate("/login");
   };
 
@@ -57,7 +60,7 @@ export default function Sidebar() {
 
       <div className="p-10">
         <button
-          onClick={handleLogout}
+          onClick={handleLogout}  // Llamada a la función de logout
           className="w-full bg-gray-700 text-white py-2 rounded hover:bg-black"
         >
           Cerrar sesión

@@ -32,7 +32,7 @@ const ProyectoDetalle = () => {
     };
   
     return (
-      <div className="flex">
+      <div className="flex max-h-screen">
         <div className="flex-1 p-6 overflow-auto">
           {/* Header del Proyecto */}
           <div className="bg-gray-100 p-6 rounded-lg shadow">
