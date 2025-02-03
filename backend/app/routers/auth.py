@@ -30,13 +30,15 @@ async def login_user(user_data: UserLogin, db: AsyncSession = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=401, detail="Credenciales incorrectas")
     
-    token = create_access_token(data={"sub": user.email})
+    token = create_access_token(data={"sub": user.email, "role": user.role})
     return {
         "access_token": token, 
         "token_type": "bearer",
         "user":{
             "name": user.name,
             "last_name": user.last_name,
-            "email": user.email
+            "email": user.email,
+            "role": user.role
             }
         }
+    
