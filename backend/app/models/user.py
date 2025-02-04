@@ -16,4 +16,4 @@ class User(Base):
     is_verified = Column(Boolean, default=False)
     role = Column(Enum('admin','employee', name='role_enum'), nullable=False,default='employee')
     created_at = Column(DateTime, default=datetime.utcnow)
-    
+    security_answer = Column(String, nullable=False)

@@ -6,7 +6,7 @@ from app.utils.security import get_password_hash, verify_password
 
 async def create_user(user_data: UserCreate, db: AsyncSession) -> User:
     """
-    Crea un nuevo usuario en la base de datos.
+    Crea un nuevo usuario en la base de datos, incluyendo la respuesta de seguridad.
     """
     # Verificar si el email ya está registrado
     query = select(User).where(User.email == user_data.email)
@@ -16,13 +16,17 @@ async def create_user(user_data: UserCreate, db: AsyncSession) -> User:
     if existing_user:
         raise ValueError("El correo ya está registrado")
 
+    # Hashear la contraseña y la respuesta de seguridad
+    hashed_password = get_password_hash(user_data.password)
+    hashed_security_answer = get_password_hash(user_data.security_answer)
+
     # Crear un nuevo usuario
-    hashed_password = get_password_hash(user_data.password)  # Hashear la contraseña
     new_user = User(
         name=user_data.name,
         last_name=user_data.last_name,
         email=user_data.email,
         password=hashed_password,
+        security_answer=hashed_security_answer,  # Almacenar la respuesta de seguridad
         is_verified=False,
         role=user_data.role if user_data.role else "employee",
     )
@@ -31,6 +35,7 @@ async def create_user(user_data: UserCreate, db: AsyncSession) -> User:
     await db.refresh(new_user)
 
     return new_user
+
 
 
 async def authenticate_user(email: str, password: str, db: AsyncSession):

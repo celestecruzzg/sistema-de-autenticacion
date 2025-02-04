@@ -12,16 +12,19 @@ class UserBase(BaseModel):
     last_name: str = Field(..., max_length=50)
     email: EmailStr
     role: str = Field(default="employee", pattern="^(admin|employee)$")
-    
+    security_answer: Optional[str] = None  # Campo opcional para mayor flexibilidad
+
     #Aquí se sanitizan las cadenas, en este caso los campos name y last_name se les quitan los posibles espacios en blanco
     #innecesarios y se elimina caracteres peligrosos como <, >, &. Esto se hace para evitar ataques XSS
-    @field_validator("name", "last_name")
+    @field_validator("name", "last_name", "security_answer")
     def sanitize_strings(cls, value: str) -> str:
         return value.strip()
 
     
 class UserCreate(UserBase):
     password: str = Field(..., min_length=1)
+    security_answer: str = Field(..., min_length=1)  # Respuesta requerida
+
 
 #A partit de aquí se definen como deben verse los datos que devuelva el backend al solicitar info de un usuario
 class UserResponse(UserBase):
@@ -32,6 +35,7 @@ class UserResponse(UserBase):
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+    security_answer: str  # Nueva validación
 
     
     #Permite que FastAPI convierta automáticamente los datos de el modelo SQLAlchemy User a este esquema

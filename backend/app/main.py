@@ -17,9 +17,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
+
 # Registrar el router de autenticación
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 
 #Ruta de verificación
 @app.get("/")
@@ -35,12 +37,12 @@ class CSPMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
         response.headers["Content-Security-Policy"] = (
             "default-src 'self';"
-            "script-src 'self';"
-            "style-src 'self';"
-            "img-src 'self' data:; "
-            "object-src 'none';" #Evita que se use <object>
-            "frame-ancestors 'none';" #Esto sirve para prevenir clickjackin
-            "base-uri 'self';"  # Evita cambiar la base del documento
+            "script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';"
+            "style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';"
+            "img-src 'self' data: https://fastapi.tiangolo.com;"
+            "object-src 'none';"
+            "frame-ancestors 'none';"
+            "base-uri 'self';"
         )
         return response
 
