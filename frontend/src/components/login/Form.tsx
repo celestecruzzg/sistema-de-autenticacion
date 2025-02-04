@@ -15,34 +15,29 @@ export default function Form() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    // Configurar react-hook-form
+    
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<FormValues>();
 
-    // Función para alternar la visibilidad de la contraseña
+    
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
     };
 
-    // Función para manejar el envío del formulario
+    
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
         setIsLoading(true);
 
         try {
-            // Realizar la solicitud al backend
             const response = await axios.post("http://127.0.0.1:8000/auth/login", {
                 email: data.email,
                 password: data.password,
             });
-
-            // Guardar el token en el almacenamiento local
             localStorage.setItem("accessToken", response.data.access_token);
             localStorage.setItem("user", JSON.stringify(response.data.user));
-
-            // Redirigir al dashboard
             navigate("/dashboard");
         } catch (error) {
             toast.error("Error al iniciar sesión, inténtalo de nuevo", {

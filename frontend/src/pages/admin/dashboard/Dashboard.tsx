@@ -1,11 +1,10 @@
 // Dashboard.tsx
 import { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import Sidebar from "../../components/dashboard/Sidebar";
-import Header from "../../components/dashboard/Header";
+import Sidebar from "../../../components/dashboard/Sidebar";
+import Header from "../../../components/dashboard/Header";
 
 export default function Dashboard() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [userData, setUserData] = useState<any>(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();

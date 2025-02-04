@@ -3,8 +3,6 @@ import { FaEdit, FaPlus } from "react-icons/fa";
 
 const ProyectoDetalle = () => {
   const { id } = useParams(); // Obtener el ID del proyecto desde la URL
-  
-    // Datos de ejemplo (reemplázalos con datos reales de una API o contexto)
     const proyecto = {
       id,
       nombre: "Nombre del proyecto",

@@ -1,14 +1,14 @@
 import { Navigate, RouteObject } from "react-router-dom";
 import Login from "./pages/auth/login/Login";
-import Dashboard from "./pages/dashboard/Dashboard";
+import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Register from "./pages/auth/register/Register";
 import ProtectedRoute from "./components/login/ProtectedRoute";
 import Home from "./components/dashboard/Home";
 import Configuracion from "./components/dashboard/Configuracion";
 import Resources from "./components/dashboard/Resources";
-import Proyectos from './pages/proyectos/Proyectos';
-import Equipos from "./pages/equipos/Equipos";
-import ProyectoDetalle from "./pages/proyectos/ProyectoDetalle"; // Importamos la nueva vista
+import Proyectos from './pages/admin/proyectos/Proyectos';
+import Equipos from "./pages/admin/equipos/Equipos";
+import ProyectoDetalle from "./pages/admin/proyectos/ProyectoDetalle"; // Importamos la nueva vista
 
 const appRoutes: RouteObject[] = [
   {
@@ -44,7 +44,7 @@ const appRoutes: RouteObject[] = [
       ),
       },
       {
-        path: "proyectos/:id", // Agregamos la ruta para ver los detalles del proyecto
+        path: "proyectos/:id",
         element: (
           <ProtectedRoute>
           <ProyectoDetalle />
