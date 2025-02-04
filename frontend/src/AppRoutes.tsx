@@ -9,6 +9,7 @@ import Resources from "./components/dashboard/Resources";
 import Proyectos from './pages/admin/proyectos/Proyectos';
 import Equipos from "./pages/admin/equipos/Equipos";
 import ProyectoDetalle from "./pages/admin/proyectos/ProyectoDetalle"; // Importamos la nueva vista
+import Asignaciones from "./pages/employee/Asignaciones";
 
 const appRoutes: RouteObject[] = [
   {
@@ -77,6 +78,10 @@ const appRoutes: RouteObject[] = [
       },
     ],
   },
+  {
+    path: "/asignaciones",
+    element: <Asignaciones/>
+  }
 ];
 
 export default appRoutes;
