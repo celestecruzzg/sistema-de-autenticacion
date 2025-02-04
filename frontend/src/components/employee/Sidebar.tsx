@@ -2,7 +2,7 @@ import { FaCogs, FaTasks } from "react-icons/fa";
 import { IoHome } from "react-icons/io5"; 
 import { useNavigate } from "react-router-dom";
 
-export default function Sidebar() {
+export default function SidebarEmployee() {
   const navigate = useNavigate();
   
   const handleLogout = () => {
@@ -18,7 +18,7 @@ export default function Sidebar() {
         <h2 className="text-2xl font-semibold">Gestor de proyectos</h2>
 
         <button 
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/inicio")}
           className="flex items-center space-x-4 rounded hover:bg-gray-600 p-2 w-full mt-4"
         >
           <IoHome size={20} />
@@ -26,7 +26,7 @@ export default function Sidebar() {
         </button>
 
         <button 
-          onClick={() => navigate("/dashboard/proyectos")}
+          onClick={() => navigate("/inicio/asignaciones")}
           className="flex items-center space-x-4 rounded hover:bg-gray-600 p-2 w-full mt-4"
         >
           <FaTasks size={20} />
@@ -34,7 +34,7 @@ export default function Sidebar() {
         </button>
 
         <button 
-          onClick={() => navigate("/dashboard/configuracion")}
+          onClick={() => navigate("/inicio/configuracion")}
           className="flex items-center space-x-4 rounded hover:bg-gray-600 p-2 w-full mt-4"
         >
           <FaCogs size={20} />

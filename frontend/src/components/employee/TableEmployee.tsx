@@ -11,7 +11,7 @@ export default function Table({ data }: { data: any[] }) {
   return (
     <div className="overflow-x-auto bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-center mt-6 px-6">
-        <h2 className="text-xl font-semibold">Actividades</h2>
+        <h2 className="text-xl font-semibold">Tareas Asignadas</h2>
 
         <div className="flex items-center">
           <label htmlFor="month" className="mr-2 text-sm text-gray-700">Filtrar por mes:</label>

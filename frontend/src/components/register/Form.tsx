@@ -11,6 +11,7 @@ export default function Form() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [favoritePet, setFavoritePet] = useState("");  // Estado para la mascota favorita
 
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -26,6 +27,7 @@ export default function Form() {
                 last_name: lastName,
                 email,
                 password,
+                security_answer: favoritePet,  // Incluimos la mascota favorita como security_answer
             };
 
             const response = await axios.post("http://127.0.0.1:8000/auth/register", payload);
@@ -37,6 +39,7 @@ export default function Form() {
             setLastName("");
             setEmail("");
             setPassword("");
+            setFavoritePet("");  // Limpiamos el campo de mascota favorita
         } catch (error: any) {
             console.error(error.response?.data?.detail || "Error desconocido");
             toast.error(error.response?.data?.detail || "Error al registrar usuario");
@@ -112,6 +115,18 @@ export default function Form() {
                                         <FiEye onClick={togglePasswordVisibility} className="text-gray-400 h-5 w-5" />
                                     )}
                                 </div>
+                            </div>
+                            <div className="relative w-full max-w-xs">
+                                <input
+                                    type="text"
+                                    name="favorite-pet"
+                                    value={favoritePet}
+                                    onChange={(e) => setFavoritePet(e.target.value)}
+                                    required
+                                    placeholder="¿Cuál es tu animal favorito?"
+                                    className="mt-1 block w-full pl-10 border border-gray-300 placeholder:font-light text-sm rounded-lg shadow-sm p-2"
+                                />
+                                <FaRegAddressCard className="absolute left-3 top-3 text-[var(--primary-color)] h-5 w-5" />
                             </div>
                             <div className="flex flex-col justify-end items-center mt-4">
                                 <button
